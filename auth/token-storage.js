@@ -19,7 +19,7 @@ class TokenStorage {
       ).split(' '),
       tokenEndpoint:
         process.env.MS_TOKEN_ENDPOINT ||
-        'https://login.microsoftonline.com/common/oauth2/v2.0/token',
+        'https://login.microsoftonline.com/consumers/oauth2/v2.0/token',
       refreshTokenBuffer: 5 * 60 * 1000, // 5 minutes buffer for token refresh
       ...config, // Allow overriding default config
     };

@@ -265,10 +265,10 @@ describe('OAuth Server Routes', () => {
         'Mail.Read',
       ]);
       expect(config.tokenEndpoint).toBe(
-        'https://login.microsoftonline.com/common/oauth2/v2.0/token'
+        'https://login.microsoftonline.com/consumers/oauth2/v2.0/token'
       );
       expect(config.authEndpoint).toBe(
-        'https://login.microsoftonline.com/common/oauth2/v2.0/authorize'
+        'https://login.microsoftonline.com/consumers/oauth2/v2.0/authorize'
       );
     });
 

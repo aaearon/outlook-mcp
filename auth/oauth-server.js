@@ -63,10 +63,10 @@ function createAuthConfig(envPrefix = 'MS_') {
     ).split(' '),
     tokenEndpoint:
       process.env[`${envPrefix}TOKEN_ENDPOINT`] ||
-      'https://login.microsoftonline.com/common/oauth2/v2.0/token',
+      'https://login.microsoftonline.com/consumers/oauth2/v2.0/token',
     authEndpoint:
       process.env[`${envPrefix}AUTH_ENDPOINT`] ||
-      'https://login.microsoftonline.com/common/oauth2/v2.0/authorize',
+      'https://login.microsoftonline.com/consumers/oauth2/v2.0/authorize',
   };
 }
 

@@ -33,12 +33,16 @@ module.exports = {
     clientSecret: process.env.OUTLOOK_CLIENT_SECRET || '',
     redirectUri: 'http://localhost:3333/auth/callback',
     scopes: [
+      'offline_access',
+      'User.Read',
       'Mail.Read',
       'Mail.ReadWrite',
       'Mail.Send',
-      'User.Read',
       'Calendars.Read',
       'Calendars.ReadWrite',
+      'Contacts.Read',
+      'Contacts.ReadWrite',
+      'People.Read',
     ],
     tokenStorePath: path.join(homeDir, '.outlook-mcp-tokens.json'),
     authServerUrl: 'http://localhost:3333',
@@ -79,5 +83,5 @@ module.exports = {
   DEFAULT_SEARCH_RESULTS: DEFAULT_LIMITS.searchEmails,
 
   // Timezone
-  DEFAULT_TIMEZONE: 'Australia/Melbourne', // Updated for Nathan's timezone
+  DEFAULT_TIMEZONE: 'Europe/Amsterdam',
 };

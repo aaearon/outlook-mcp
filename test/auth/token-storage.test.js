@@ -21,7 +21,7 @@ const baseConfig = {
   clientSecret: 'test-client-secret',
   redirectUri: 'http://localhost/callback',
   scopes: ['test_scope'],
-  tokenEndpoint: 'https://login.microsoftonline.com/common/oauth2/v2.0/token',
+  tokenEndpoint: 'https://login.microsoftonline.com/consumers/oauth2/v2.0/token',
   refreshTokenBuffer: 5 * 60 * 1000, // 5 minutes, matches TokenStorage default
 };
 
