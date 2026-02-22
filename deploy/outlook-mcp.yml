@@ -1,0 +1,15 @@
+http:
+  routers:
+    outlook-mcp:
+      rule: "Host(`omcp.ams.iosharp.com`)"
+      entryPoints:
+        - websecure
+      service: outlook-mcp
+      tls:
+        certResolver: letsencrypt
+
+  services:
+    outlook-mcp:
+      loadBalancer:
+        servers:
+          - url: "http://localhost:3939"

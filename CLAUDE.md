@@ -68,7 +68,7 @@ USE_TEST_MODE=false
 **Tokens stored at**: `~/.outlook-mcp-tokens.json`
 
 **Defaults**:
-- Timezone: `Australia/Melbourne`
+- Timezone: `Europe/Amsterdam`
 - Page size: 25
 - Max results: 100
 
@@ -114,6 +114,36 @@ Mock data defined in `utils/mock-data.js`.
 - Field presets in `utils/field-presets.js` optimize token usage
 - Response verbosity: `minimal`, `standard`, `full` (controls output detail)
 - Delta sync uses `@odata.deltaLink` for incremental updates
+
+## Deployment (Docker + supergateway)
+
+This fork wraps the STDIO MCP server with `supergateway` for Streamable HTTP transport.
+
+```bash
+# Build and run
+docker compose up -d --build
+
+# One-time OAuth flow (run from machine with browser access)
+docker compose --profile auth up outlook-mcp-auth
+# Then open http://localhost:3333/auth in browser
+
+# Stop
+docker compose down
+```
+
+**Production URL**: `https://omcp.ams.iosharp.com/mcp`
+**Traefik config**: `deploy/outlook-mcp.yml`
+
+### Deployment target: optiplex
+- Host: `optiplex` (SSH alias)
+- Repo path: `/home/tim/outlook-mcp`
+- Traefik dynamic config: `/home/tim/media/appdata/traefik/dynamic/outlook-mcp.yml`
+- Token volume: `outlook-mcp-tokens` (Docker named volume)
+
+### MSA Auth (Personal Microsoft Accounts)
+- OAuth tenant: `/consumers/` (not `/common/`)
+- Scopes: `offline_access User.Read Mail.Read Mail.ReadWrite Mail.Send Calendars.Read Calendars.ReadWrite Contacts.Read Contacts.ReadWrite People.Read`
+- Excluded (MSA-incompatible): `Mail.Read.Shared`, `Place.Read.All`, `MailboxSettings.*`
 
 ## See Also
 

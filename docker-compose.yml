@@ -1,0 +1,31 @@
+services:
+  outlook-mcp:
+    build: .
+    container_name: outlook-mcp
+    restart: unless-stopped
+    ports:
+      - "3939:3939"
+    environment:
+      - MS_CLIENT_ID=${MS_CLIENT_ID}
+      - MS_CLIENT_SECRET=${MS_CLIENT_SECRET}
+      - HOME=/data
+    volumes:
+      - outlook-mcp-tokens:/data
+
+  outlook-mcp-auth:
+    build: .
+    container_name: outlook-mcp-auth
+    command: ["node", "outlook-auth-server.js"]
+    ports:
+      - "3333:3333"
+    environment:
+      - MS_CLIENT_ID=${MS_CLIENT_ID}
+      - MS_CLIENT_SECRET=${MS_CLIENT_SECRET}
+      - HOME=/data
+    volumes:
+      - outlook-mcp-tokens:/data
+    profiles:
+      - auth
+
+volumes:
+  outlook-mcp-tokens:
