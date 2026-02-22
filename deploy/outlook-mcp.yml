@@ -3,13 +3,13 @@ http:
     outlook-mcp:
       rule: "Host(`omcp.ams.iosharp.com`)"
       entryPoints:
-        - websecure
+        - web-secure
       service: outlook-mcp
       tls:
-        certResolver: letsencrypt
+        certResolver: myresolver
 
   services:
     outlook-mcp:
       loadBalancer:
         servers:
-          - url: "http://localhost:3939"
+          - url: "http://192.168.178.42:3939"
