@@ -14,4 +14,8 @@ ENV HOME=/data
 
 EXPOSE 3939
 
-CMD ["npx", "-y", "supergateway", "--streamableHttp", "node index.js", "--port", "3939"]
+CMD ["npx", "-y", "supergateway", \
+    "--stdio", "node index.js", \
+    "--outputTransport", "streamableHttp", \
+    "--port", "3939", \
+    "--healthEndpoint", "/health"]
